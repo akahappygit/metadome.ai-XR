@@ -1,0 +1,74 @@
+{
+  "theme": "dark",
+  "archetype": "7 (Electric & Neon)",
+  "colors": {
+    "background": "bg-slate-950",
+    "primary_accent": "text-cyan-400 border-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.5)]",
+    "success": "text-green-400",
+    "critical": "text-red-500 bg-red-500/20 border-red-500/50",
+    "muted_text": "text-cyan-100/60"
+  },
+  "typography": {
+    "headings": "'Chakra Petch', 'Orbitron', sans-serif",
+    "body": "'JetBrains Mono', 'Share Tech Mono', monospace",
+    "rules": [
+      "Use tracking-widest for ALL uppercase UI labels.",
+      "Never use Inter or generic sans. Strict adherence to technical/futuristic fonts.",
+      "Headings should have a text-shadow for a glowing effect, e.g., drop-shadow-[0_0_8px_rgba(34,211,238,0.6)].",
+      "All numeric data should be monospace to align vertically."
+    ]
+  },
+  "surfaces": {
+    "cards": "bg-slate-950/80 backdrop-blur-xl border border-cyan-500/40 shadow-[0_4px_30px_rgba(34,211,238,0.15)]",
+    "modals": "Retro-futurism (terminal look) with sharp corners, 1px solid borders, and glowing drop-shadows.",
+    "background_effect": "A CSS scanline overlay must be placed over the entire app. Use a fixed, pointer-events-none inset-0 div with bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_4px] z-50 mix-blend-overlay."
+  },
+  "layout_spacing": {
+    "grid": "Implement a subtle grid background on the main container to simulate an AR viewport: bg-[linear-gradient(to_right,#0891b215_1px,transparent_1px),linear-gradient(to_bottom,#0891b215_1px,transparent_1px)] bg-[size:3rem_3rem]",
+    "padding": "Generous spacing. p-8 or p-12 inside the diagnosis card to prevent crowding.",
+    "structure": "Flex column layout. Header at top, status bar below it, centered main content area, fixed absolute bottom banner."
+  },
+  "components": {
+    "header": {
+      "instructions": "Top navigation bar. Left: 'ARIA — X-Ray Vision Diagnostics'. Right: 'Metadome AI' + a small circular div with 'bg-green-400 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]' and 'SYSTEM ACTIVE' text. Add a bottom border border-cyan-500/30.",
+      "test_id": "header-container"
+    },
+    "vehicle_status_bar": {
+      "instructions": "Full width strip below header. Monospace font, text-xs, uppercase. Display: 'Vehicle: Tata Nexon EV 2024 | Active Faults: 3 | Battery Temp: 47°C ⚠️'. Use flex with gap-8 to space items. Add a subtle cyan background tint (bg-cyan-900/20) and a bottom border.",
+      "test_id": "vehicle-status-bar"
+    },
+    "scan_button": {
+      "instructions": "Large circular button in the center of the screen. Dimensions: w-64 h-64 or similar. Border: 2px solid cyan-400 with glowing shadow. Text: '📷 Scan Component' (use Lucide Camera icon). On hover: scale up slightly, increase glow. Add 2-3 absolute positioned concentric rings (divs with border-t/border-b cyan-500/50 rounded-full) rotating at different speeds to look like a targeting reticle.",
+      "test_id": "scan-component-button"
+    },
+    "loading_state": {
+      "instructions": "When scan button is clicked, it transforms/hides and shows 'ARIA Analyzing Component...' text and a high-tech loader (e.g., a scanning laser sweeping up and down a box, or rotating concentric circles).",
+      "test_id": "scan-loading-indicator"
+    },
+    "diagnosis_card": {
+      "instructions": "A sleek, tech-focused panel that appears after 2s of loading. Show Fault Code 'P0A93' in large red/cyan text. Use a bento-style CSS grid inside for Component ('DC-DC Converter'), Location ('Near drive motor, under hood'), Severity ('CRITICAL'). Include a prominent 'Safety Warning: HIGH VOLTAGE — Disconnect main service plug before inspection' section with a red background tint. Repair steps should be an ordered list.",
+      "test_id": "diagnosis-card"
+    },
+    "critical_banner": {
+      "instructions": "Fixed at the bottom of the screen. '⚠️ HIGH VOLTAGE ZONE DETECTED — Supervisor Notified'. Background: red-600. Text: white, uppercase, tracking-widest, bold. Must flash (animate-pulse or custom keyframe flipping between dark red and bright red). Only show when the diagnosis card is visible.",
+      "test_id": "critical-warning-banner"
+    }
+  },
+  "motion_interactions": {
+    "scan_sequence": "1. Click scan button. 2. Button transforms to loader. 3. Loader spins for 2s. 4. Diagnosis card fades in and slides up (using framer-motion).",
+    "reticle_rotation": "Use infinite slow rotation (animate-spin with custom slow duration) on the outer rings of the scan button.",
+    "warning_flash": "The bottom banner should blink heavily."
+  },
+  "icons": "lucide-react (Camera, AlertTriangle, Activity, Crosshair, Target)",
+  "images": [],
+  "instructions_to_main_agent": [
+    "Install framer-motion and lucide-react.",
+    "Include <link href='https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap' rel='stylesheet'> in index.html to load the futuristic fonts.",
+    "Set the global font-family for headings to 'Chakra Petch' and body to 'JetBrains Mono'.",
+    "Implement the 'scan component' flow using React state (status: 'idle' | 'scanning' | 'complete').",
+    "Ensure all text has adequate contrast against the dark background. Use text shadows to create a neon glow effect.",
+    "The UI must span 100vh and 100vw with overflow-hidden to act as a fixed HUD.",
+    "Use standard data-testid attributes on all interactive elements as specified in the components section.",
+    "Follow the Retro-futurism/Terminal look: no soft shadows, only glowing neon dropshadows, sharp corners or very minimal rounding (rounded-sm), visible grid layouts."
+  ]
+}
