@@ -34,7 +34,7 @@ function App() {
         >
           <h1 className="text-lg md:text-xl font-bold text-cyan-400 tracking-widest uppercase"
               style={{ textShadow: '0 0 8px rgba(34, 211, 238, 0.6)' }}>
-            ARIA — X-Ray Vision Diagnostics
+            ayush — X-Ray Vision Diagnostics
           </h1>
           <div className="flex items-center gap-3">
             <div className="relative flex items-center gap-2">
@@ -114,7 +114,7 @@ function App() {
                 </div>
                 <p className="text-cyan-400 text-xl font-bold tracking-widest uppercase"
                    style={{ textShadow: '0 0 8px rgba(34, 211, 238, 0.6)' }}>
-                  ARIA Analyzing Component...
+                  ayush Analyzing Component...
                 </p>
               </motion.div>
             )}
