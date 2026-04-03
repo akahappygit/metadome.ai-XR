@@ -111,14 +111,36 @@ function App() {
     fileInputRef.current?.click();
   };
 
-  const handleScanClick = () => {
+ const handleScanClick = async () => {
+  setScanStatus("scanning");
+  try {
+    const response = await fetch('https://n8n-production-3c1c.up.railway.app/webhook/bda9dee5-c90c-41ab-8008-23e19190350z', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fault_code: 'P0A93',
+        vehicle: 'Tata Nexon EV 2024',
+        message: 'Scan component'
+      })
+    });
+    const data = await response.json();
+    const diagnosisText = data.candidates[0].content.parts[0].text;
+    setCurrentDiagnosis({
+      faultCode: 'P0A93',
+      component: 'DC-DC Converter',
+      location: 'Near drive motor, under hood',
+      severity: 'CRITICAL',
+      safetyWarning: 'HIGH VOLTAGE — Disconnect main service plug before inspection',
+      aiDiagnosis: diagnosisText,
+      repairSteps: ['Check 12V battery state of charge', 'Inspect wiring harness at junction J3']
+    });
+    setScanStatus("complete");
+  } catch (error) {
     const randomScenario = DIAGNOSTIC_SCENARIOS[Math.floor(Math.random() * DIAGNOSTIC_SCENARIOS.length)];
     setCurrentDiagnosis(randomScenario);
-    setScanStatus("scanning");
-    setTimeout(() => {
-      setScanStatus("complete");
-    }, 3000);
-  };
+    setScanStatus("complete");
+  }
+};
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
